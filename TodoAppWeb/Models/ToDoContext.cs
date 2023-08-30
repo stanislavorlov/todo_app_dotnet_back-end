@@ -4,6 +4,11 @@ namespace TodoAppWeb.Models
 {
     public class ToDoContext : DbContext
     {
+        //declare a parameterless constructor
+        public ToDoContext()
+        {
+        }
+
         //declare a constructor which accepts DbContextOptions
         public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
         {
@@ -11,6 +16,6 @@ namespace TodoAppWeb.Models
             Database.EnsureCreated();
         }
 
-        public DbSet<ToDo> ToDos { get; set; }
+        public virtual DbSet<ToDo> ToDos { get; set; }
     }
 }
