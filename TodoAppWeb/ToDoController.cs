@@ -19,7 +19,11 @@ namespace TodoAppWeb
         [HttpGet]
         public ActionResult Index()
         {
-            var todos = this.toDoContext.ToDos;
+            var todos = this.toDoContext.ToDos.ToList();
+
+            // Filter all todos except completed ones
+            todos = todos.Where(todo => todo.IsComplete == false).ToList();
+
             return View(todos);
         }
 
@@ -57,7 +61,7 @@ namespace TodoAppWeb
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpPost("{id}/delete")]
         public IActionResult Delete(int id)
         {
             var todoToDelete = this.toDoContext.ToDos.Find(id);
@@ -70,7 +74,29 @@ namespace TodoAppWeb
             this.toDoContext.ToDos.Remove(todoToDelete);
             this.toDoContext.SaveChanges();
 
-            return NoContent();
+            // redirect to Index action
+            return RedirectToAction("Index");
+        }
+
+        // Create an Http Post method Complete
+        // The endpoint should return a 404 if the ToDo is not found
+        // The endpoint should return a 200 if the ToDo is found
+        // The endpoint should return the ToDo as JSON
+        [HttpPost("{id}/complete")]
+        public IActionResult Complete(int id)
+        {
+            var todo = this.toDoContext.ToDos.Find(id);
+
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.IsComplete = true;
+            this.toDoContext.SaveChanges();
+
+            // redirect to Index action
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
