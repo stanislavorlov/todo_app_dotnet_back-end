@@ -77,6 +77,8 @@ namespace TodoAppWeb
         [HttpPost]
         public IActionResult Create(ToDo todo)
         {
+            // Add timestamp to todo Name
+            todo.Name = $"{todo.Name} - {DateTime.Now}";
             this.toDoContext.ToDos.Add(todo);
             this.toDoContext.SaveChanges();
 

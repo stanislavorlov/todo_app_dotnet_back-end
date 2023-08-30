@@ -17,23 +17,6 @@
         <input asp-for="Name" name="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    @* Remove input for Description*@
-@*<div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>*@
-        @* Remove input for Title*@
-@*<div class="form-group">
-    <div class="form-group">
-        <label asp-for="Title" class="control-label"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    @* Remove input for completion*@
-@*<div class="form-group">
-        <label asp-for="IsCompleted" class="control-label"></label>
-        <input asp-for="IsCompleted" class="form-control" />
-        <span asp-validation-for="IsCompleted" class="text-danger"></span>*@
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
@@ -46,16 +29,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            @* Remove label for Description*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsCompleted)
-            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -66,21 +39,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                @* Remove label for Description, Title, IsCompleted*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Description)
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsCompleted)
-                </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Complete", "Complete", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
