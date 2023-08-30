@@ -3,7 +3,6 @@ using TodoAppWeb.Models;
 
 namespace TodoAppWeb
 {
-    // Add MVC Controller directive here
     [Controller]
     public class ToDoController : Controller
     {
