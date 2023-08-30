@@ -275,5 +275,28 @@ namespace TodoAppWeb
             // Assert if redirectToActionResult is not null
             redirectToActionResult.Should().NotBeNull();
         }
+
+        [Fact]
+        public void Complete_ReturnsToDo()
+        {
+            // Arrange
+            var mockToDoContext = new Mock<ToDoContext>();
+            var todo = new ToDo
+            {
+                Id = 1,
+                Name = "Test ToDo"
+            };
+            mockToDoContext.Setup(x => x.ToDos.Find(1)).Returns(todo);
+            var controller = new ToDoController(mockToDoContext.Object);
+
+            // Act
+            var result = controller.Complete(1);
+
+            // Assert
+            // Update expected type from ViewResult to RedirectToActionResult
+            result.Should().BeOfType<RedirectToActionResult>();
+            var noContentResult = result as RedirectToActionResult;
+            noContentResult.Should().NotBeNull();
+        }
     }
 }
