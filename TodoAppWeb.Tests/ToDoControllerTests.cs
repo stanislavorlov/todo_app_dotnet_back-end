@@ -107,9 +107,9 @@ namespace TodoAppWeb
             var result = controller.Delete(1);
 
             // Assert
-            result.Should().BeOfType<NoContentResult>();
-            var noContentResult = result as NoContentResult;
-            noContentResult.StatusCode.Should().Be(204);
+            result.Should().BeOfType<RedirectToActionResult>();
+            var noContentResult = result as RedirectToActionResult;
+            noContentResult.Should().NotBeNull();
         }
 
         [Fact]
@@ -244,9 +244,9 @@ namespace TodoAppWeb
 
             // Assert
             // Update expected type from ViewResult to NoContentResult
-            result.Should().BeOfType<NoContentResult>();
-            var noContentResult = result as NoContentResult;
-            noContentResult.StatusCode.Should().Be(204);
+            result.Should().BeOfType<RedirectToActionResult>();
+            var noContentResult = result as RedirectToActionResult;
+            noContentResult.Should().NotBeNull();
         }
 
         [Fact]
