@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
